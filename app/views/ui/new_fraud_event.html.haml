@@ -1,0 +1,25 @@
+.container
+  .row
+    .span10.offset1
+      %form.form-horizontal
+        %ul.nav.nav-tabs
+          %li.active
+            %a(href="") Add New Fruad Event
+        %fieldset
+          .control-group
+            %label.control-label Description
+            .controls
+              %textarea.span6(rows="8")
+          .control-group
+            %label.control-label Time
+            .controls
+              %input.span3(type="text")
+          .control-group
+            %label.control-label Upload Evidence
+            .controls
+              %span.btn.btn-file
+                %input(type="file")
+
+        %fieldset.actions.control-group
+          .controls
+            %input(type="submit" value="Add Fraud Event" class="btn")
