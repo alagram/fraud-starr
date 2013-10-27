@@ -1,0 +1,11 @@
+%section.new_fraud_type.container
+  .row
+    .span10.offset1
+      %p
+        %b
+          Name:
+          = @fraud_type.name
+
+      = link_to 'Edit', edit_admin_fraud_type_path(@fraud_type) 
+      |
+      = link_to 'Back', admin_fraud_types_path
