@@ -1,0 +1,12 @@
+%section.new_fraud_type.container
+  .row
+    .span10.offset1
+      = bootstrap_form_for [:admin, @fraud_type] do |f|
+        %header
+          %h1 New Product Type
+          %hr
+        %fieldset
+          = f.text_field :name
+        %br
+        %fieldset.action
+          %input(type="submit" value="Create Product Type" class="btn")

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027084336) do
+ActiveRecord::Schema.define(version: 20131027111617) do
+
+  create_table "fraud_fields", force: true do |t|
+    t.string   "name"
+    t.string   "field_type"
+    t.boolean  "required"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "fraud_types", force: true do |t|
     t.string   "name"

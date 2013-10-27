@@ -5,6 +5,7 @@ gem 'rails', '4.0.0'
 gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
+gem 'bootstrap_form'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -26,6 +27,10 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+group :test, :development do
+  gem 'rspec-rails'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
