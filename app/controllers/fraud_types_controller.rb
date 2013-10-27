@@ -1,2 +1,0 @@
-class FraudTypesController < ApplicationController
-end
