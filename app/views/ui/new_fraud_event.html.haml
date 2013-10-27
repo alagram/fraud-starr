@@ -7,11 +7,15 @@
             %a(href="") Add New Fruad Event
         %fieldset
           .control-group
+            %label.control-label Title
+            .controls
+              %input.span3(type="text")
+          .control-group
             %label.control-label Description
             .controls
               %textarea.span6(rows="8")
           .control-group
-            %label.control-label Date
+            %label.control-label Fraud Date
             .controls
               %input.span3#fraud_date(type="text")
           .control-group
