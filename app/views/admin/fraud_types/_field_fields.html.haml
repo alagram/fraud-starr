@@ -1,0 +1,6 @@
+%fieldset.field_fields
+  = f.select :field_type, %w[text_field check_box twitter_text_field]
+  = f.text_field :name, placeholder: "field_name", label: "Field Name"
+  = f.check_box :required
+  = f.hidden_field :_destroy
+  = link_to "remove", '#', class: "remove_fields"

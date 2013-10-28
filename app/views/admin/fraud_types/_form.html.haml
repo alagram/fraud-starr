@@ -1,0 +1,10 @@
+= bootstrap_form_for [:admin, @fraud_type] do |f|
+  %fieldset
+    = f.text_field :name
+  %fieldset
+    = f.fields_for :fields do |builder|
+      = render 'field_fields', f: builder
+    = link_to_add_fields "Add Field", f, :fields
+  %br
+  %fieldset.action
+    = f.submit class: "btn"
