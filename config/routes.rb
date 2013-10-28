@@ -1,5 +1,6 @@
 FraudStarr::Application.routes.draw do
   get 'ui(/:action)', controller: 'ui'
+  root to: 'frauds#index'
 
   get 'register_fraud', to: 'frauds#register'
 

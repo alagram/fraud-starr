@@ -1,4 +1,8 @@
 class FraudsController < ApplicationController
+
+  def index  
+  end
+
   def new
     @fraud = Fraud.new(fraud_type_id: params[:fraud_type_id])
   end
