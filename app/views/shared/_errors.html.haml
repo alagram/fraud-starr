@@ -1,8 +1,8 @@
-- if obj.errors.any?
+- if object.errors.any?
   .row
-    .alert.alert-error.span6
-      %h5 Please fix the following errors:
+    .alert.alert-error.span8
+      %a.close{"data-dismiss" => "alert"} ×
       %ul
-        - obj.errors.full_messages.each do |msg|
+        - @fraud.errors.full_messages.each do |msg|
           %li
             = msg

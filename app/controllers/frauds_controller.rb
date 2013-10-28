@@ -14,7 +14,6 @@ class FraudsController < ApplicationController
       flash[:success] = 'Fraud event successfully created.'
       redirect_to register_fraud_path
     else
-      flash[:error] = 'Fraud event not created.'
       render :new
     end
   end
