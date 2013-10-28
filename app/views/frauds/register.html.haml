@@ -1,7 +1,10 @@
-%form.form-horizontal
-  .control-group
-    %label.control-label Fraud Type
-    .controls
-      %select
-  .controls
-    %input(type="submit" value="New Fraud Event" class="btn")
+%section.new_fraud_type.container
+  .row
+    .span10.offset1
+      = form_tag new_fraud_path, method: :get, class: 'form-horizontal' do
+        .control-group
+          = label_tag :fraud_type_id, nil, class: "control-label"
+          .controls
+            = select_tag :fraud_type_id, options_from_collection_for_select(FraudType.all, :id, :name)
+        .controls
+          = submit_tag "New Fraud Event", name: nil, class: "btn"

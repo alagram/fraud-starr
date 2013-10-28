@@ -12,7 +12,7 @@ class Admin::FraudTypesController < ApplicationController
 
     if @fraud_type.save
       flash[:success] = 'Fraud type was succesfully created.'
-      redirect_to admin_fraud_type_path
+      redirect_to admin_fraud_types_path
     else
       flash[:error] = 'Fraud type not created.'
       render :new
