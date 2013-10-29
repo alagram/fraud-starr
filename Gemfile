@@ -42,6 +42,10 @@ group :production do
   gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 end
 
+group :test do
+  gem "shoulda-matchers"
+end
+
 group :test, :development do
   gem 'rspec-rails'
 end
