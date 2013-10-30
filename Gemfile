@@ -6,6 +6,7 @@ gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 gem 'bootstrap_form'
+gem 'carrierwave'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
