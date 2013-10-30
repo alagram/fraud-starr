@@ -1,8 +1,12 @@
 = render 'shared/errors', object: @fraud
 
-= form_for @fraud, html: { class: "form-horizontal" } do |f|
+= form_for @fraud, html: { class: "form-horizontal", autocomplete: "off" } do |f|
   %fieldset
     = f.hidden_field :fraud_type_id
+    = f.fields_for :properties, OpenStruct.new(@fraud.properties) do |builder|
+      - @fraud.fraud_type.fields.each do |field|
+        = render "frauds/fields/#{field.field_type}", field: field, f: builder
+        %br
     .control-group
       = f.label :title, class: 'control-label'
       .controls
@@ -15,11 +19,6 @@
       = f.label :fraud_date, class: 'control-label'
       .controls
         = f.text_field :fraud_date, class: 'span3 fraud_date'
-
-    = f.fields_for :properties, OpenStruct.new(@fraud.properties) do |builder|
-      - @fraud.fraud_type.fields.each do |field|
-        = render "frauds/fields/#{field.field_type}", field: field, f: builder
-        %br
     .control-group
       = f.label :upload_evidence, class: 'control-label'
       .controls

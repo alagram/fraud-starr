@@ -43,7 +43,9 @@ group :production do
 end
 
 group :test do
-  gem "shoulda-matchers"
+  gem 'shoulda-matchers'
+  gem 'fabrication'
+  gem 'faker'
 end
 
 group :test, :development do
