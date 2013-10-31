@@ -6,6 +6,7 @@ gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 gem 'bootstrap_form'
+gem 'carrierwave'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
@@ -38,6 +39,14 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
+  gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'fabrication'
+  gem 'faker'
 end
 
 group :test, :development do
