@@ -7,6 +7,7 @@ gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 gem 'bootstrap_form'
 gem 'carrierwave'
+gem 'jquery-fileupload-rails'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
