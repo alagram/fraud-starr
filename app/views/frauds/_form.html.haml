@@ -23,7 +23,7 @@
       = f.fields_for :images, Image.new do |ff|
         = ff.label :image, "Upload Evidence", class: 'control-label'
         .controls
-          = ff.file_field :image, class: 'btn btn-file'
+          = ff.file_field :image, multiple: true, class: 'btn btn-file', id: 'upload-image', name: "fraud[images_attributes][][image]"
   %fieldset.actions.control-group
     .controls
-      = f.submit class: 'btn'
+      = f.submit class: 'btn', id: 'submit-data'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030174521) do
+ActiveRecord::Schema.define(version: 20131101230018) do
 
   create_table "fraud_fields", force: true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20131030174521) do
     t.datetime "updated_at"
     t.integer  "fraud_type_id"
     t.text     "properties"
+    t.string   "status",        default: "1"
   end
 
   create_table "images", force: true do |t|
