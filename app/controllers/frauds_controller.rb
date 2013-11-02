@@ -18,22 +18,6 @@ class FraudsController < ApplicationController
     end
   end
 
-  def edit
-    @fraud = Fraud.find(params[:id])
-  end
-
-  def update
-    @fraud = Fraud.find(params[:id])
-
-    if @fraud.save
-      flash[:success] = 'Fraud event successfully updated.'
-      redirect_to @fraud
-    else
-      flash[:error] = 'Fraud event not updated.'
-      render :edit
-    end
-  end
-
 
   private
 

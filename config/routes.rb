@@ -8,5 +8,5 @@ FraudStarr::Application.routes.draw do
     resources :fraud_types
   end
 
-  resources :frauds, only: [:new, :create, :edit, :update]
+  resources :frauds, only: [:new, :create]
 end
