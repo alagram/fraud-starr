@@ -6,26 +6,12 @@ class Fraud < ActiveRecord::Base
 
   validates_presence_of :title, :fraud_date, :description
   validate :validate_properties
-  validate :check_fraud_date
+  validate :fraud_date_cannot_be_in_the_future
 
-  before_save :save_fraud_date
-
-  attr_writer :fraud_date
-
-  def fraud_date
-    @fraud_date || fraud_date.try(:strftime, "%Y-%m-%d")
-  end
-
-  def save_fraud_date
-    self.fraud_date = Time.zone.parse(@fraud_date) if @fraud_date.present?
-  end
-
-  def check_fraud_date
-    if @fraud_date.present? && Time.zone.parse(fraud_date).nil?
-      errors.add :fraud_date, "cannot be parsed"
+  def fraud_date_cannot_be_in_the_future
+    if fraud_date.present? && fraud_date > Date.today
+      errors.add(:fraud_date, 'cannot be in the future')
     end
-  rescue ArgumentError
-    errors.add :fraud_date, "is out of range"
   end
 
   def validate_properties
