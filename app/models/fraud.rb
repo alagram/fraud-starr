@@ -18,6 +18,14 @@ class Fraud < ActiveRecord::Base
     fraud_type.fields.each do |field|
       if field.required? && properties[field.name].blank?
         errors.add field.name, "must not be blank"
+      elsif field.required? && field.name.include?("Twitter")
+        errors.add field.name, "is not valid" unless properties[field.name] =~ /@([a-z0-9_]+)/i
+      elsif field.required? && field.name.include?("Facebook")
+        errors.add field.name, "is not valid" unless properties[field.name] =~ URI::regexp(%w(http https))
+      elsif field.required? && field.name.include?("Phone")
+        errors.add field.name, "is not valid" unless properties[field.name] =~ /^[0-9()-]+$/
+      elsif field.required? && field.name.include?("Phone")
+        errors.add field.name, "is not valid" unless properties[field.name] =~ /@/
       end
     end
   end
