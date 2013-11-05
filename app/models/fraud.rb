@@ -24,7 +24,7 @@ class Fraud < ActiveRecord::Base
         errors.add field.name, "is not valid" unless properties[field.name] =~ URI::regexp(%w(http https))
       elsif field.required? && field.name.include?("Phone")
         errors.add field.name, "is not valid" unless properties[field.name] =~ /^[0-9()-]+$/
-      elsif field.required? && field.name.include?("Phone")
+      elsif field.required? && field.name.include?("Email")
         errors.add field.name, "is not valid" unless properties[field.name] =~ /@/
       end
     end
