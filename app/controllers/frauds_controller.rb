@@ -11,26 +11,10 @@ class FraudsController < ApplicationController
     @fraud = Fraud.new(fraud_params)
     
     if @fraud.save
-      flash[:success] = 'Fraud event successfully created.'
+      flash[:success] = 'Fraudulent event successfully added.'
       redirect_to register_fraud_path
     else
       render :new
-    end
-  end
-
-  def edit
-    @fraud = Fraud.find(params[:id])
-  end
-
-  def update
-    @fraud = Fraud.find(params[:id])
-
-    if @fraud.save
-      flash[:success] = 'Fraud event successfully updated.'
-      redirect_to @fraud
-    else
-      flash[:error] = 'Fraud event not updated.'
-      render :edit
     end
   end
 
