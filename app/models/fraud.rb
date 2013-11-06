@@ -21,7 +21,7 @@ class Fraud < ActiveRecord::Base
       elsif field.required? && field.name.include?("Twitter")
         errors.add field.name, "is not valid" unless properties[field.name] =~ /@([a-z0-9_]+)/i
       elsif field.required? && field.name.include?("Facebook")
-        errors.add field.name, "must be a valid URL" unless properties[field.name] =~ URI::regexp(%w(http https))
+        errors.add field.name, "must be a valid URL" unless properties[field.name] =~ /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i
       elsif field.required? && field.name.include?("Phone")
         errors.add field.name, "must be a valid Phone number" unless properties[field.name] =~ /^\d{10}$/
       elsif field.required? && field.name.include?("Email")
