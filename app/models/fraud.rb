@@ -4,6 +4,7 @@ class Fraud < ActiveRecord::Base
   has_many :images
   accepts_nested_attributes_for :images
 
+  before_validation :append_at_sign_to_twitter_handle
   validates_presence_of :title, :fraud_date, :description
   validate :validate_properties
   validate :fraud_date_cannot_be_in_the_future
@@ -29,4 +30,15 @@ class Fraud < ActiveRecord::Base
       end
     end
   end
+
+  private
+
+  def append_at_sign_to_twitter_handle
+    if properties["Twitter Handle"].start_with?("@")
+      self.properties["Twitter Handle"]
+    else
+      self.properties["Twitter Handle"][0,0] = "@"
+    end
+  end
+
 end
