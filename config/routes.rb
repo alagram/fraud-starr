@@ -8,5 +8,9 @@ FraudStarr::Application.routes.draw do
     resources :fraud_types
   end
 
-  resources :frauds, only: [:new, :create]
+  resources :frauds, only: [:new, :create] do
+    collection do
+      get 'search', to: 'frauds#search'
+    end
+  end
 end
