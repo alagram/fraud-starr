@@ -13,20 +13,34 @@ describe FraudsController do
 
   describe "POST create" do
     context "with valid inputs" do
+
+      before do
+        post :create, fraud: Fabricate.attributes_for(:fraud), properties: { "Twitter handle" => "@agram" }
+      end
+
       it "redirects to register fraud page" do
-        twitter = Fabricate(:fraud_type, name: "Twitter")
-        twitter_field = Fabricate(:fraud_field, fraud_type_id: twitter.id)
-        post :create, fraud: Fabricate.attributes_for(:fraud), fraud_type_id: twitter.id, properties: { twitter_field.name => "@agram" }
         expect(response).to redirect_to register_fraud_path
       end
-      it "creates a fraudulent event"
-      it "sets the flash success message"
+      it "creates a fraudulent event" do
+        expect(Fraud.count).to eq(1)
+      end
+      it "sets the flash success message" do
+        expect(flash[:success]).to eq("Fraudulent event successfully added.")
+      end
     end
 
     context "with invalid inputs" do
-      it "does not create a fraudulent event"
-      it "renders the :new template"
-      it "sets the flash error message"
+
+      before do
+        post :create, fraud: Fabricate.attributes_for(:fraud, title: ""), properties: { "Twitter handle" => "@agram" }
+      end
+
+      it "does not create a fraudulent event" do
+        expect(Fraud.count).to eq(0)
+      end
+      it "renders the :new template" do
+        expect(response).to render_template :new
+      end
     end
   end
 end
