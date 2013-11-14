@@ -1,0 +1,14 @@
+.container
+  .row
+    %form.form-search
+      .input-append
+        %input.input-xxlarge(type="text")
+        %button.btn(type="submit")Search
+  %hr
+
+    %ul.search-results
+      - 6.times do
+        %li.results
+          %a{href: "#"} My Big Fat Fraud
+          %br
+          To promote prosperity, creativity, entrepreneurship, and innovation by...
