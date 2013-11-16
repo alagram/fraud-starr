@@ -8,6 +8,7 @@ gem 'jquery-ui-rails'
 gem 'bootstrap_form'
 gem 'carrierwave'
 gem 'jquery-fileupload-rails'
+gem 'taps'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
@@ -33,7 +34,7 @@ group :doc do
 end
 
 group :development do
-  gem 'sqlite3'
+  gem 'pg'
 end
 
 group :production do
