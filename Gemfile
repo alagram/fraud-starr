@@ -3,11 +3,14 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem 'haml-rails'
-gem 'bootstrap-sass'
+gem 'twitter-bootstrap-rails'
+gem 'less-rails'
+gem 'therubyracer'
 gem 'jquery-ui-rails'
 gem 'bootstrap_form'
 gem 'carrierwave'
 gem 'jquery-fileupload-rails'
+gem 'taps'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
@@ -33,13 +36,12 @@ group :doc do
 end
 
 group :development do
-  gem 'sqlite3'
+  gem 'pg'
 end
 
 group :production do
   gem 'pg'
-  gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
-  gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
+  gem 'rails_12factor'
 end
 
 group :test do

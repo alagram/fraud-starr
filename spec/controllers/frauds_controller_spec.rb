@@ -15,7 +15,7 @@ describe FraudsController do
     context "with valid inputs" do
 
       before do
-        post :create, fraud: Fabricate.attributes_for(:fraud), properties: { "Twitter handle" => "@agram" }
+        post :create, fraud: Fabricate.attributes_for(:fraud)
       end
 
       it "redirects to register fraud page" do
@@ -32,7 +32,7 @@ describe FraudsController do
     context "with invalid inputs" do
 
       before do
-        post :create, fraud: Fabricate.attributes_for(:fraud, title: ""), properties: { "Twitter handle" => "@agram" }
+        post :create, fraud: Fabricate.attributes_for(:fraud, title: "")
       end
 
       it "does not create a fraudulent event" do
