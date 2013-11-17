@@ -1,6 +1,5 @@
 class Fraud < ActiveRecord::Base
   belongs_to :fraud_type
-  serialize :properties, Hash
   has_many :images
   accepts_nested_attributes_for :images
 

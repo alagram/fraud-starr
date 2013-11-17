@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131101230018) do
+ActiveRecord::Schema.define(version: 20131117132115) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "fraud_fields", force: true do |t|
     t.string   "name"
@@ -35,9 +39,11 @@ ActiveRecord::Schema.define(version: 20131101230018) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fraud_type_id"
-    t.text     "properties"
     t.string   "status",        default: "1"
+    t.hstore   "properties"
   end
+
+  add_index "frauds", ["properties"], name: "frauds_properties", using: :gin
 
   create_table "images", force: true do |t|
     t.string   "image"
