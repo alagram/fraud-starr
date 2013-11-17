@@ -3,6 +3,7 @@ header.top {
   top: 0;
   min-width: 1240px;
   padding: 10px;
+  margin-bottom: 60px;
 }
 
 header hgroup {
