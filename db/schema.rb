@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131117134823) do
+ActiveRecord::Schema.define(version: 20131118150204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(version: 20131117134823) do
     t.hstore   "properties"
     t.string   "status",        default: "1"
   end
-
-  add_index "frauds", ["properties"], name: "frauds_properties", using: :gin
 
   create_table "images", force: true do |t|
     t.string   "image"
