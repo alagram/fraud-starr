@@ -8,6 +8,10 @@ class Fraud < ActiveRecord::Base
   validate :validate_properties
   validate :fraud_date_cannot_be_in_the_future
 
+  def self.search(query)
+    where("properties @@ :q", q: query)
+  end
+
   def fraud_date_cannot_be_in_the_future
     if fraud_date.present? && fraud_date > Date.today
       errors.add(:fraud_date, 'cannot be in the future')
@@ -43,5 +47,4 @@ class Fraud < ActiveRecord::Base
       errors.add field.name, "must be a valid Email address" unless properties[field.name] =~ /@/
     end
   end
-
 end
