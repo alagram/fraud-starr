@@ -8,10 +8,15 @@ class Fraud < ActiveRecord::Base
   validate :validate_properties
   validate :fraud_date_cannot_be_in_the_future
   before_create :update_fraud_search
-  beofore_update :update_fraud_search
+  before_update :update_fraud_search
 
 
   def self.search(query)
+    conditons = <<-EOS
+      to_tsvector('english', fraud_search) @@ plainto_tsquery('english', #{sanitize(query)})
+    EOS
+
+    where(conditons, query).order("created_at DESC")
   end
 
   def fraud_date_cannot_be_in_the_future
