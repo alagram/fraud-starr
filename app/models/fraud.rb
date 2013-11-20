@@ -7,17 +7,17 @@ class Fraud < ActiveRecord::Base
   validates_presence_of :title, :fraud_date, :description
   validate :validate_properties
   validate :fraud_date_cannot_be_in_the_future
-  before_create :update_fraud_search
-  before_update :update_fraud_search
 
 
   def self.search(query)
     conditons = <<-EOS
-      to_tsvector('english', fraud_search) @@ plainto_tsquery('english', #{sanitize(query)})
+      to_tsvector('english', CAST(avals(properties) AS text)) @@ plainto_tsquery('english', #{sanitize(query)})
     EOS
 
     where(conditons, query).order("created_at DESC")
   end
+
+  # WHERE(CAST(avals(properties) AS text) @@ 'http://www.facebook.com/ben')
 
   def fraud_date_cannot_be_in_the_future
     if fraud_date.present? && fraud_date > Date.today
@@ -52,12 +52,6 @@ class Fraud < ActiveRecord::Base
       errors.add field.name, "must be a valid Phone number" unless properties[field.name] =~ /^\d{10}$/
     elsif field.required? && field.name.include?("Email")
       errors.add field.name, "must be a valid Email address" unless properties[field.name] =~ /@/
-    end
-  end
-
-  def update_fraud_search
-    fraud_type.fields.each do |field|
-      self.fraud_search = properties[field.name]
     end
   end
 end
