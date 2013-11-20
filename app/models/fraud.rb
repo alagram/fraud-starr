@@ -17,8 +17,6 @@ class Fraud < ActiveRecord::Base
     where(conditons, query).order("created_at DESC")
   end
 
-  # WHERE(CAST(avals(properties) AS text) @@ 'http://www.facebook.com/ben')
-
   def fraud_date_cannot_be_in_the_future
     if fraud_date.present? && fraud_date > Date.today
       errors.add(:fraud_date, 'cannot be in the future')

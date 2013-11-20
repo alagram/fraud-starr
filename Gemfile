@@ -44,6 +44,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'rack-mini-profiler'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'fabrication'
