@@ -2,13 +2,24 @@
   .row
     = form_for search_frauds_path, method: :get, class: "form-search" do
       .input-append
-        = text_field_tag :search, params[:query], class: "input input-xxlarge"
+        = text_field_tag :search, params[:query], class: "input input-xxlarge", name: "query", autocomplete: "off"
         %button.btn(type="submit")Search
-  %hr
+    %hr
 
-    %ul.search-results
-      - @results.each do |fraud|
-        %li.results
-          = link_to fraud.title
-          %br
-          %h4= fraud.description
+    - if @results.empty?
+      %h4.results Your search for did not match any documents.
+
+      %h4.results Suggestions:
+
+      %ul.results
+        %li Try different keywords.
+    -else
+      %ul.search-results
+        - @results.each do |fraud|
+          %li
+          %h3
+            = link_to fraud.title, fraud_path(fraud)
+            %br
+          .desc= fraud.description
+
+      
