@@ -18,6 +18,10 @@ class FraudsController < ApplicationController
     end
   end
 
+  def search
+    @results = Fraud.search(params[:query])
+  end
+
 
   private
 

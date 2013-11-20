@@ -3,8 +3,8 @@
     %h1.home-title FraudStar
     %p.home-subtitle Easy to use fraud-reporting tool.
   .contain
-    %form.search
-      %input.focusedInput(type="text")
+    = form_tag search_frauds_path, method: :get, class: "search" do
+      %input.focusedInput(name="query" type="text" autocomplete="off")
       %input.button(type="submit" value="Search")
     %br
   .caption
