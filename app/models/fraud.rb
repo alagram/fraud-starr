@@ -8,6 +8,17 @@ class Fraud < ActiveRecord::Base
   validate :validate_properties
   validate :fraud_date_cannot_be_in_the_future
 
+
+  def self.search(query)
+    conditons = <<-EOS
+      to_tsvector('english', CAST(avals(properties) AS text)) @@ plainto_tsquery('english', #{sanitize(query)})
+    EOS
+
+    where(conditons, query).order("created_at DESC")
+  end
+
+  # WHERE(CAST(avals(properties) AS text) @@ 'http://www.facebook.com/ben')
+
   def fraud_date_cannot_be_in_the_future
     if fraud_date.present? && fraud_date > Date.today
       errors.add(:fraud_date, 'cannot be in the future')
@@ -43,5 +54,4 @@ class Fraud < ActiveRecord::Base
       errors.add field.name, "must be a valid Email address" unless properties[field.name] =~ /@/
     end
   end
-
 end
