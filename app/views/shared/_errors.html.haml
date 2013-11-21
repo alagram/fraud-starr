@@ -3,6 +3,6 @@
     .alert.alert-error.span8
       %a.close{"data-dismiss" => "alert"} ×
       %ul
-        - @fraud.errors.full_messages.each do |msg|
+        - object.errors.full_messages.each do |msg|
           %li
             = msg
