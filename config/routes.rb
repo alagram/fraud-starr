@@ -2,9 +2,10 @@ FraudStarr::Application.routes.draw do
   get 'ui(/:action)', controller: 'ui'
   root to: 'frauds#index'
 
-  get 'register_fraud', to: 'frauds#register'
+  get 'report_fraud', to: 'frauds#register'
   get 'register', to: 'users#new'
   get 'sign_in', to: 'sessions#new'
+  get 'sign_out', to: 'sessions#destroy'
 
   namespace :admin do
     resources :fraud_types
@@ -17,4 +18,5 @@ FraudStarr::Application.routes.draw do
   end
 
   resources :users, only: [:create]
+  resources :sessions, only: [:create]
 end

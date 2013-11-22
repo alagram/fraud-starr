@@ -1,4 +1,5 @@
 class FraudsController < ApplicationController
+  before_filter :require_user, only: [:new, :create, :show, :register]
 
   def index  
   end
