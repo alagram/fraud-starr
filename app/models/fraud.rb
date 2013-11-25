@@ -1,12 +1,13 @@
 class Fraud < ActiveRecord::Base
   belongs_to :fraud_type
   has_many :images
-  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :images, :reject_if => proc { |attr| attr['image'].blank? }
 
   before_validation :append_at_sign_to_twitter_handle
   validates_presence_of :title, :fraud_date, :description
   validate :validate_properties
   validate :fraud_date_cannot_be_in_the_future
+  validate :must_have_evidence
 
 
   def self.search(query)
@@ -51,5 +52,13 @@ class Fraud < ActiveRecord::Base
     elsif field.required? && field.name.include?("Email")
       errors.add field.name, "must be a valid Email address" unless properties[field.name] =~ /@/
     end
+  end
+
+  def must_have_evidence
+    errors[:base] << "Please upload evidence" if images_empty?
+  end
+
+  def images_empty?
+    images.empty?
   end
 end
