@@ -3,8 +3,8 @@ require 'spec_helper'
 describe FraudsController do
   describe "GET new" do
     it "sets the @fraud variable" do
+      set_current_user
       twitter = Fabricate(:fraud_type)
-
       get :new, fraud_type_id: twitter.id
       expect(assigns(:fraud)).to be_new_record
       expect(assigns(:fraud)).to be_instance_of(Fraud)
@@ -12,19 +12,20 @@ describe FraudsController do
   end
 
   describe "POST create" do
+
     context "with valid inputs" do
 
-      before do
+      it "redirects to report fraud page" do
+        set_current_user
         post :create, fraud: Fabricate.attributes_for(:fraud)
-      end
-
-      it "redirects to register fraud page" do
-        expect(response).to redirect_to register_fraud_path
+        expect(response).to redirect_to report_fraud_path
       end
       it "creates a fraudulent event" do
+        post :create, fraud: Fabricate.attributes_for(:fraud)
         expect(Fraud.count).to eq(1)
       end
       it "sets the flash success message" do
+        post :create, fraud: Fabricate.attributes_for(:fraud)
         expect(flash[:success]).to eq("Fraudulent event successfully added.")
       end
     end
