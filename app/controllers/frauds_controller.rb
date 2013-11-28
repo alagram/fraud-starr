@@ -20,7 +20,7 @@ class FraudsController < ApplicationController
   end
 
   def search
-    @results = Fraud.search(params[:query])
+    @results = Fraud.search(params[:q])
   end
 
   def show
