@@ -25,7 +25,7 @@ describe FraudsController do
         post :create, fraud: Fabricate.attributes_for(:fraud)
         expect(Fraud.count).to eq(1)
       end
-      it "creates a fraudulent event associated uploaded evidence" do
+      it "creates a fraudulent event associated with uploaded evidence" do
         set_current_user
         post :create, fraud: Fabricate.attributes_for(:fraud)
         expect(Fraud.first.images).to eq([Image.first])
