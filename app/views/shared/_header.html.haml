@@ -4,9 +4,14 @@
       %ul.primary_nav_right
         %li.selected
           = link_to "home", root_path
+        - unless current_user
+          %li
+            = link_to "regsiter", register_path
         %li
-          %a{href: "#"} Register
-        %li
-          %a{href: "#"} Sign In
-        %li
-          = link_to "Register Fraud!", register_fraud_path
+          = link_to "Report Fraud!", report_fraud_path
+        - if current_user
+          %li
+            = link_to "sign out", sign_out_path
+        - else
+          %li
+            = link_to "sign in", sign_in_path

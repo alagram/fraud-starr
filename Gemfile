@@ -44,6 +44,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'rack-mini-profiler'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'fabrication'
@@ -61,7 +63,7 @@ group :test, :development do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
