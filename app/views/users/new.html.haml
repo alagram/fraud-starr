@@ -1,14 +1,30 @@
-%section.register.container
+.container
+  %p.alert
+    You can
+    %strong Log In
+    if you already have an account
+.content
   .row
-    .span10.offset1
-      = bootstrap_form_for @user, html: { class: "form-horizontal", autocomplete: "off" } do |f|
-        %header
-          %h1 Register
-          %hr
-        %fieldset
-          = f.text_field :full_name, label: "Full Name"
-          = f.email_field :email, label: "Email Address"
-          = f.password_field :password
-        %fieldset.actions.control-group
-          .controls
-            %input(type="submit" value="Sign Up" class="btn")
+    .span6.offset2
+      = render 'shared/errors', object: @user
+  #sign-up-social.span5.offset1
+    %h6 Sign Up with Social Networks
+    %p
+      You can Log In if you already have an account.
+    %button.btn.btn-social-twitter.btn-lnger
+      %i.fui-twitter
+      Sign Up with Twitter
+    %button.btn.btn-social-facebook.btn-lnger
+      %i.fui-facebook
+      Sign Up with Facebook
+  #sign-up-email.span5.offset1
+    %h6 Sign Up with Email
+    = form_for @user, html: { autocomplete: "off" } do |f|
+      .form-group
+        = f.text_field :full_name, class: "form-control", placeholder: "Full Name"
+      .form-group
+        = f.text_field :email, class: "form-control", placeholder: "Email"
+      .form-group
+        = f.text_field :password, class: "form-control", placeholder: "Password"
+      .form-group
+        %button.btn.btn-default.btn-wide Sign Up
