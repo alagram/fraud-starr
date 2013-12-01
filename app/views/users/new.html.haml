@@ -1,7 +1,8 @@
 .container
   %p.alert
     You can
-    %strong Log In
+    = link_to sign_in_path do
+      %strong Log In
     if you already have an account
 .content
   .row
