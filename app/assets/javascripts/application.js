@@ -13,7 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery.ui.datepicker
+//= require flatuipro
+//= require jquery.ui.all
 //= require jquery-fileupload/basic
 //= require turbolinks
 //= require_tree .

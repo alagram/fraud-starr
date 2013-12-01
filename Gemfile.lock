@@ -53,6 +53,10 @@ GEM
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
     database_cleaner (1.0.1)
+    designmodo-flatuipro-rails (1.1.4.2)
+      jquery-rails (>= 2.2.1)
+      jquery-ui-rails (>= 4.0.3)
+      twitter-bootstrap-rails (>= 2.2.6)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -216,6 +220,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.0.1)
+  designmodo-flatuipro-rails
   fabrication
   faker
   haml-rails

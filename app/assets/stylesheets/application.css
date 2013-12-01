@@ -9,8 +9,15 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require jquery.ui.datepicker
+ *= require jquery.ui.all
  *= require general
  *= require whitespace-reset
  *= require_tree .
  */
+
+
+.datepicker.dropdown-menu {
+  visibility: visible; !important
+  opacity: 1; !important
+  width: auto; !important
+} 
