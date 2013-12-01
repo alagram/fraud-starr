@@ -17,13 +17,15 @@
           .control-group
             %label.control-label Fraud Date
             .controls
-              %input.span3#fraud_date(type="text")
+              .input-prepend.input-datepicker
+                %button.btn{type: "button"}
+                  %span.fui-calendar
+                %input.span3#datepicker-01(type="text")
           .control-group
             %label.control-label Upload Evidence
             .controls
               %span.btn.btn-file
                 %input(type="file")
-
         %fieldset.actions.control-group
           .controls
             %input(type="submit" value="Add Fraud Event" class="btn")
