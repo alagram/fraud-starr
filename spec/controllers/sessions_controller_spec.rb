@@ -15,48 +15,53 @@ describe SessionsController do
   end
 
   describe "POST create" do
+
+    let!(:david) { Fabricate(:user) }
+
     context "with valid credentials" do
-      it "puts the signed in user in the session" do
-        david = Fabricate(:user)
+
+      before do
         post :create, email: david.email, password: david.password
+      end
+
+      it "puts the signed in user in the session" do
         expect(session[:user_id]).to eq(david.id)
       end
 
       it "redirects to root path" do
-        david = Fabricate(:user)
-        post :create, email: david.email, password: david.password
         expect(response).to redirect_to root_path
       end
     end
 
     context "with invalid credentials" do
-      it "does not put the siged in user in the session" do
-        david = Fabricate(:user)
+
+      before do
         post :create, email: david.email, password: david.password + 'asdfght'
+      end
+
+      it "does not put the siged in user in the session" do
         expect(session[:user_id]).to be_nil
       end
       it "redirects to the sign in page" do
-        david = Fabricate(:user)
-        post :create, email: david.email, password: david.password + 'asdfght'
         expect(response).to redirect_to sign_in_path
       end
       it "sets the flash error message" do
-        david = Fabricate(:user)
-        post :create, email: david.email, password: david.password + 'asdfght'
         expect(flash[:error]).not_to be_blank
       end
     end
   end
 
   describe "GET destroy" do
-    it "clears the session for the user" do
+
+    before do
       set_current_user
       get :destroy
+    end
+
+    it "clears the session for the user" do
       expect(session[:user_id]).to be_nil
     end
     it "redirects to the root path" do
-      set_current_user
-      get :destroy
       expect(response).to redirect_to root_path
     end
   end
