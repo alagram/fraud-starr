@@ -14,6 +14,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def preauth
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = user.id
+    redirect_to root_path
+  end
+
   private
 
   def user_params

@@ -6,6 +6,7 @@ FraudStarr::Application.routes.draw do
   get 'register', to: 'users#new'
   get 'sign_in', to: 'sessions#new'
   get 'sign_out', to: 'sessions#destroy'
+  get '/auth/:provider/callback', to: 'users#preauth'
 
   namespace :admin do
     resources :fraud_types
