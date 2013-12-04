@@ -4,7 +4,7 @@ FraudStarr::Application.routes.draw do
 
   get 'report_fraud', to: 'frauds#register'
   get 'register', to: 'users#new'
-  # get 'sign_in', to: 'sessions#create'
+  get 'sign_in', to: 'sessions#new'
   get 'sign_out', to: 'sessions#destroy'
   get '/auth/:provider/callback', to: 'sessions#create'
 
