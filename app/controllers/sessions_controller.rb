@@ -13,4 +13,8 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path, notice: "Signed out!"
   end
+
+  def failure
+    redirect_to root_path, alert: "Authentication failed, please try again."
+  end
 end
