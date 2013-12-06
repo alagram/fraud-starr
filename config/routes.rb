@@ -3,7 +3,7 @@ FraudStarr::Application.routes.draw do
   root to: 'frauds#index'
 
   get 'report_fraud', to: 'frauds#register'
-  get 'register', to: 'users#new'
+  # get 'register', to: 'users#new'
   get 'sign_in', to: 'sessions#new'
   get 'sign_out', to: 'sessions#destroy'
   get '/auth/:provider/callback', to: 'sessions#create'
@@ -19,7 +19,7 @@ FraudStarr::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users, only: [:create]
   resources :sessions, only: [:create]
-  # resources :identities
+  resources :identities
 end

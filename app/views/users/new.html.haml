@@ -7,14 +7,7 @@
 .content
   .row
     .span6.offset2
-      - if @identity && @identity.errors.any?
-        .row
-          .alert.alert-error.span8
-            %a.close{"data-dismiss" => "alert"} ×
-            %ul
-              - @identity.errors.full_messages.each do |msg|
-                %li
-                  = msg
+      = render 'shared/errors', object: @user
   #sign-up-social.span5.offset1
     %h6 Sign Up with Social Networks
     %p
@@ -27,14 +20,12 @@
       Sign Up with Facebook
   #sign-up-email.span5.offset1
     %h6 Sign Up with Email
-    = form_for @user, :url => '/auth/identity/register' do |f|
+    = form_for @user, html: { autocomplete: "off" } do |f|
       .form-group
-        = f.text_field :full_name, class: "form-control", autocomplete: "off", placeholder: "Full Name"
+        = f.text_field :full_name, class: "form-control", placeholder: "Full Name"
       .form-group
-        = f.email_field :email, class: "form-control", autocomplete: "off", placeholder: "Email"
+        = f.email_field :email, class: "form-control", placeholder: "Email"
       .form-group
-        = f.password_field :password, class: "form-control", autocomplete: "off", placeholder: "Password"
-      .form-group
-        = f.password_field :password_confirmation, class: "form-control", autocomplete: "off", placeholder: "Confirm Password"
+        = f.password_field :password, class: "form-control", placeholder: "Password"
       .form-group
         %button.btn.btn-default.btn-wide Sign Up

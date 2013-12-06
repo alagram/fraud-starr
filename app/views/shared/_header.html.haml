@@ -6,7 +6,7 @@
           = link_to "home", root_path
         - unless current_user
           %li
-            = link_to "regsiter", register_path
+            = link_to "regsiter", new_identity_path
         %li
           = link_to "Report Fraud!", report_fraud_path
         - if current_user
