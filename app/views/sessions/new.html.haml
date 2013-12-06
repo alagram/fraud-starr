@@ -1,17 +1,17 @@
 .content
   #login-social.span8.offset2
     %h6 Sign In with Social Networks
-    %button.btn.btn-social-twitter.btn-lnger
+    = link_to "/auth/twitter", class: "btn btn-social-twitter btn-lnger" do
       %i.fui-twitter
-      = link_to "Sign In with Twitter", "/auth/twitter"
+      Sign In with Twitter
     %button.btn.btn-social-facebook.btn-lnger
       %i.fui-facebook
       Sign In with Facebook
   #login-email.span8.offset2
     %h6 - ELSE -
-    = form_tag sessions_path, autocomplete: "off" do
+    = form_tag "/auth/auth/callback", autocomplete: "off" do
       .form-group
-        = email_field_tag :email, nil, class: "form-control", placeholder: "Email"
+        = email_field_tag :auth_key, nil, class: "form-control", placeholder: "Email"
       .form-group
         = password_field_tag :password, nil, class: "form-control", placeholder: "Password"
       .form-group
