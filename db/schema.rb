@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131206105206) do
+ActiveRecord::Schema.define(version: 20131206180810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "authentications", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "fraud_fields", force: true do |t|
     t.string   "name"
@@ -49,7 +57,7 @@ ActiveRecord::Schema.define(version: 20131206105206) do
     t.string   "full_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "create_at"
+    t.datetime "created_at"
     t.datetime "updated_at"
   end
 
@@ -63,9 +71,9 @@ ActiveRecord::Schema.define(version: 20131206105206) do
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "uid"
-    t.string   "provider"
-    t.string   "name"
+    t.string   "full_name"
+    t.string   "email"
+    t.string   "password_digest"
   end
 
 end
