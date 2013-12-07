@@ -15,6 +15,6 @@
       .form-group
         = password_field_tag :password, nil, class: "form-control", placeholder: "Password"
       .form-group
-        %button.btn.btn-default.btn-wide Sign In
+        = submit_tag "Sign In", class: "btn btn-default btn-wide"
       %p
         %a{href: "#"} Need a new password?
