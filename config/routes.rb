@@ -19,5 +19,5 @@ FraudStarr::Application.routes.draw do
     end
   end
 
-  resources :users, only: [:create]
+  resources :users
 end

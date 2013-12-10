@@ -20,12 +20,14 @@
       Sign Up with Facebook
   #sign-up-email.span5.offset1
     %h6 Sign Up with Email
-    = form_for @user, html: { autocomplete: "off" } do |f|
+    = form_for @user, :url => (@user.new_record? ? users_path : user_path(@user)), html: { autocomplete: "off" } do |f|
       .form-group
-        = f.text_field :full_name, class: "form-control", placeholder: "Full Name"
+        = f.text_field :first_name, class: "form-control", placeholder: "First Name"
+      .form-group
+        = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
       .form-group
         = f.email_field :email, class: "form-control", placeholder: "Email"
       .form-group
         = f.password_field :password, class: "form-control", placeholder: "Password"
       .form-group
-        %button.btn.btn-default.btn-wide Sign Up
+        = f.submit "Sign Up", class: "btn btn-default btn-wide"
