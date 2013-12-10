@@ -32,6 +32,10 @@ class TwitterPolicy
     @auth.credentials.token
   end
 
+  def oauth_expires
+    nil
+  end
+
   def oauth_secret
     @auth.credentials.secret
   end
@@ -51,7 +55,7 @@ class TwitterPolicy
     name = @auth.info.name
     if name.include?(" ")
       last_name = name.split(" ").last
-      first_name = name.split(" ")[0..-1].join(" ")
+      first_name = name.split(" ")[0..-2].join(" ")
     else
       first_name = name
       last_name = nil
