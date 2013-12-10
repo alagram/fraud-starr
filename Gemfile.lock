@@ -112,9 +112,6 @@ GEM
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
-    omniauth-identity (1.1.1)
-      bcrypt-ruby (~> 3.0)
-      omniauth (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -249,7 +246,6 @@ DEPENDENCIES
   jquery-ui-rails
   launchy
   less-rails
-  omniauth-identity
   omniauth-twitter
   pg
   pry

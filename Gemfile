@@ -13,7 +13,6 @@ gem 'carrierwave'
 gem 'jquery-fileupload-rails'
 gem 'taps'
 gem 'omniauth-twitter'
-gem 'omniauth-identity'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
