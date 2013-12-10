@@ -19,5 +19,4 @@ FraudStarr::Application.routes.draw do
   end
 
   resources :users, only: [:create]
-  resources :identities, only: [:new]
 end
