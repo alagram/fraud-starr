@@ -11,6 +11,9 @@
           = link_to "Report Fraud!", report_fraud_path
         - if current_user
           %li
+            = link_to "Welcome, #{current_user.first_name}", ''
+        - if current_user
+          %li
             = link_to "sign out", sign_out_path
         - else
           %li

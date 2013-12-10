@@ -12,12 +12,11 @@ gem 'bootstrap_form'
 gem 'carrierwave'
 gem 'jquery-fileupload-rails'
 gem 'taps'
+gem 'omniauth-twitter'
 
-group :assets do
-  gem 'sass-rails', '~> 4.0.0'
-  gem 'uglifier', '>= 1.3.0'
-  gem 'coffee-rails', '~> 4.0.0'
-end
+gem 'sass-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -37,6 +36,7 @@ group :doc do
 end
 
 group :development do
+  gem 'foreman'
   gem 'pg'
 end
 

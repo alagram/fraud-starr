@@ -1,7 +1,7 @@
 .content
   #login-social.span8.offset2
     %h6 Sign In with Social Networks
-    %button.btn.btn-social-twitter.btn-lnger
+    = link_to "/auth/twitter", class: "btn btn-social-twitter btn-lnger" do
       %i.fui-twitter
       Sign In with Twitter
     %button.btn.btn-social-facebook.btn-lnger
@@ -15,6 +15,6 @@
       .form-group
         = password_field_tag :password, nil, class: "form-control", placeholder: "Password"
       .form-group
-        %button.btn.btn-default.btn-wide Sign In
+        = submit_tag "Sign In", class: "btn btn-default btn-wide"
       %p
         %a{href: "#"} Need a new password?
