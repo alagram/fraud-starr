@@ -4,13 +4,14 @@ class UsersController < ApplicationController
 
   def new
     @user = RegularUser.new
+    redirect_to root_path if current_user
   end
 
   def create
     @user = RegularUser.new(regular_user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path, notice: "Welcome."
+      flash[:success] = "Thank you for registering. Please sign in."
+      redirect_to sign_in_path
     else
       render :new
     end
