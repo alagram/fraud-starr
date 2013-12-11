@@ -53,9 +53,10 @@ class OAuthUser
 
   def create_new_user
     @user = User.create!(
-      :first_name   => @policy.first_name,
-      :last_name    => @policy.last_name,
-      :email        => @policy.email
+      :first_name       => @policy.first_name,
+      :last_name        => @policy.last_name,
+      :email            => @policy.email,
+      :password_digest  => BCrypt::Password.create(SecureRandom.urlsafe_base64).to_s
       )
   end
 
