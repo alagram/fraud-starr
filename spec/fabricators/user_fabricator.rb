@@ -1,5 +1,6 @@
 Fabricator(:user) do
-  full_name { Faker::Name.name }
+  first_name { Faker::Name.first_name }
+  last_name { Faker::Name.last_name }
   email { Faker::Internet.email }
-  password "1234abc"
+  password_digest { BCrypt::Password.create(SecureRandom.urlsafe_base64).to_s }
 end
