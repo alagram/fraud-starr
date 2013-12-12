@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 feature 'User registers fraudulent event' do
-  
+
   scenario 'with valid fraud info', js: true do
    twitter = Fabricate(:fraud_type, name: "Twitter")
    facebook = Fabricate(:fraud_type, name: "Facebook")
    Fabricate(:fraud_field, fraud_type_id: twitter.id)
-   alice = Fabricate(:user)
+   alice = Fabricate(:regular_user)
 
 
     visit root_path
@@ -14,7 +14,7 @@ feature 'User registers fraudulent event' do
     visit report_fraud_path
     select "Twitter", from: "Fraud Type"
     click_button "New Fraud Event"
-    
+
     fill_in "Twitter handle", with: "@agram"
     fill_in "Title", with: "My fraud"
     fill_in "Description", with: "A very unfortunate event."
@@ -28,7 +28,7 @@ feature 'User registers fraudulent event' do
     twitter = Fabricate(:fraud_type, name: "Twitter")
     facebook = Fabricate(:fraud_type, name: "Facebook")
     Fabricate(:fraud_field, name: "Facebook Address", fraud_type_id: facebook.id)
-    kofi = Fabricate(:user)
+    kofi = Fabricate(:regular_user)
 
     visit root_path
     sign_in(kofi)

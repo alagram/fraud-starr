@@ -14,10 +14,3 @@
  *= require whitespace-reset
  *= require_tree .
  */
-
-
-.datepicker.dropdown-menu {
-  visibility: visible; !important
-  opacity: 1; !important
-  width: auto; !important
-} 
