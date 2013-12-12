@@ -4,7 +4,7 @@ describe UsersController do
   describe "GET new" do
     it "sets @user" do
       get :new
-      expect(assigns(:user)).to be_instance_of(User)
+      expect(assigns(:user)).to be_instance_of(RegularUser)
     end
     it "redirects to root path if user is already signed in" do
       set_current_user
@@ -17,10 +17,10 @@ describe UsersController do
     context "with valid input" do
 
       before do
-        post :create, user: Fabricate.attributes_for(:user)
+        post :create, regular_user: Fabricate.attributes_for(:regular_user)
       end
 
-      it "creates the user" do
+      it "creates a regular user" do
         expect(User.count).to eq(1)
       end
       it "redirects to the sign in page" do
@@ -31,17 +31,17 @@ describe UsersController do
     context "with invalid input" do
 
       before do
-        post :create, user: { email: "bob@example.com", password: "password1" }
+        post :create, regular_user: { email: "bob@example.com", password: "password1" }
       end
 
-      it "does not create the user" do
+      it "does not create the regular user" do
         expect(User.count).to eq(0)
       end
       it "renders the new template" do
         expect(response).to render_template :new
       end
       it "sets @user variable" do
-        expect(assigns(:user)).to be_instance_of(User)
+        expect(assigns(:user)).to be_instance_of(RegularUser)
       end
     end
   end
