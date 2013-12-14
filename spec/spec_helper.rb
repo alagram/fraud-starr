@@ -4,19 +4,20 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+require 'bcrypt'
 
 OmniAuth.config.test_mode = true
 omniauth_hash = {
   provider: "twitter",
-  uid: "123456"
+  uid: "123456",
   info: {
     nickname: "kofialbert",
     name: "albert"
-   }
+   },
    credentials: {
     token: "a1b2c3d4",
     secret: "abcd1234"
-   }
+   },
 }
 
 OmniAuth.config.add_mock(:twitter, omniauth_hash)
