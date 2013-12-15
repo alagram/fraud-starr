@@ -61,7 +61,7 @@ class OAuthUser
   end
 
   def refresh_tokens
-    @account.update_attributes(
+    @account.update(
       :oauth_token    => @policy.oauth_token,
       :oauth_expires  => @policy.oauth_expires,
       :oauth_secret   => @policy.oauth_secret
