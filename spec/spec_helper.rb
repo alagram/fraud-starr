@@ -4,15 +4,15 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
-require 'bcrypt'
 
 OmniAuth.config.test_mode = true
-omniauth_hash = {
+
+omniauth_twitter_hash = {
   provider: "twitter",
   uid: "123456",
   info: {
     nickname: "kofialbert",
-    name: "albert"
+    name: "Albert Smith"
    },
    credentials: {
     token: "a1b2c3d4",
@@ -20,7 +20,24 @@ omniauth_hash = {
    },
 }
 
-OmniAuth.config.add_mock(:twitter, omniauth_hash)
+omniauth_facebook_hash = {
+  provider: "facebook",
+  uid: "123456",
+  info: {
+    nickname: "kofialbert",
+    email: "albert@example.com",
+    first_name: "Albert",
+    last_name: "Smith"
+   },
+   credentials: {
+    token: "a1b2c3d4",
+    expires_at: 1392246275,
+    expires: true
+   },
+}
+
+OmniAuth.config.add_mock(:twitter, omniauth_twitter_hash)
+OmniAuth.config.add_mock(:facebook, omniauth_facebook_hash)
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
