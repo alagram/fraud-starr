@@ -7,4 +7,8 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def fraud_type_options
+    options_from_collection_for_select(FraudType.all, :id, :name)
+  end
 end

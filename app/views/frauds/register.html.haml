@@ -5,6 +5,6 @@
         .control-group
           = label_tag :fraud_type_id, "Fraud Type", class: "control-label"
           .controls
-            = select_tag :fraud_type_id, options_from_collection_for_select(FraudType.all, :id, :name)
+            = select_tag :fraud_type_id, fraud_type_options
         .controls
           = submit_tag "New Fraud Event", name: nil, class: "btn"
