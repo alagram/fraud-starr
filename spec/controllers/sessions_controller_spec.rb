@@ -51,10 +51,6 @@ describe SessionsController do
         end
       end
     end
-
-    context "with omniauth user" do
-    end
-
   end
 
   describe "GET destroy" do
