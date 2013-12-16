@@ -44,7 +44,7 @@ describe SessionsController do
           expect(session[:user_id]).to be_nil
         end
         it "redirects to the sign in page" do
-          expect(response).to render_template :new
+          expect(response).to redirect_to sign_in_path
         end
         it "sets the flash error message" do
           expect(flash[:error]).not_to be_blank
