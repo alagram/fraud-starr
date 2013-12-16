@@ -4,8 +4,8 @@
 
 .dialog.reset
   .container
-    %form.control-group
-      %input.flat.span8(placeholder="Enter your email" type="email")
-      %button.btn.btn-primary.btn-wide.mll{"data-dismiss" => "alert"}
+    = form_tag passwords_path, class: "control-group" do
+      = text_field_tag :email, nil, placeholder: "Enter your email", class: "flat"
+      %button.btn.btn-primary.btn-wide.mll
         %i.fui-mail
         Send me reset instruction
