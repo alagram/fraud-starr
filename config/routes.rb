@@ -9,6 +9,7 @@ FraudStarr::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'
   get '/passwords/confirmation', to: 'passwords#confirm', as: :password_confirmation
+  get 'expired_token', to: 'password_resets#expired_token'
 
   namespace :admin do
     resources :fraud_types
