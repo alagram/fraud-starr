@@ -39,6 +39,7 @@ end
 group :development do
   gem 'foreman'
   gem 'pg'
+  gem 'letter_opener'
 end
 
 group :production do
