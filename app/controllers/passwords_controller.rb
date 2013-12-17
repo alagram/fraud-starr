@@ -1,7 +1,4 @@
 class PasswordsController < ApplicationController
-  def new
-  end
-
   def create
     user = RegularUser.where(email: params[:email]).first
     if user
