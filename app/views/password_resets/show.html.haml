@@ -4,7 +4,8 @@
 
 .dialog.dialog-info
   .container
-    %form.control-group
-      %input.flat.passreset(type="text" placeholder="Enter your email" autocomplete="off")
+    = form_tag password_resets_path, class: "control-group" do
+      = password_field_tag :password, nil, class: "flat passreset", placeholder: "Enter new password", autocomplate: "off"
+      = hidden_field_tag :token
       %button.btn.btn-default.btn-wide.mll
         Reset Password
