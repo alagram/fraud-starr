@@ -8,7 +8,7 @@ class PasswordsController < ApplicationController
       AppMailer.send_password(user).deliver
       redirect_to password_confirmation_path
     else
-      flash[:error] = "Email cannot be blank."
+      flash[:error] = params[:email].blank? ? "Email cannot be blank." : "There is no user with that email in the system."
       redirect_to new_password_path
     end
   end

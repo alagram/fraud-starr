@@ -26,6 +26,15 @@ describe PasswordsController do
       end
     end
 
-    context "with non-existing email"
+    context "with non-existing email" do
+      it "redirects to the forgot password page" do
+        post :create, email: "bar@example.com"
+        expect(response).to redirect_to new_password_path
+      end
+      it "shows an error messgae" do
+        post :create, email: "bar@example.com"
+        expect(flash[:error]).to eq("There is no user with that email in the system.")
+      end
+    end
   end
 end
