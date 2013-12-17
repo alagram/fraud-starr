@@ -6,6 +6,6 @@
   .container
     = form_tag password_resets_path, class: "control-group" do
       = password_field_tag :password, nil, class: "flat passreset", placeholder: "Enter new password", autocomplate: "off"
-      = hidden_field_tag :token
+      = hidden_field_tag :token, @token
       %button.btn.btn-default.btn-wide.mll
         Reset Password
