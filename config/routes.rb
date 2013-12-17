@@ -8,6 +8,7 @@ FraudStarr::Application.routes.draw do
   get 'sign_out', to: 'sessions#destroy'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'
+  get '/passwords/password_confirmation', to: 'passwords#confirm', as: :password_confirmation
 
   namespace :admin do
     resources :fraud_types

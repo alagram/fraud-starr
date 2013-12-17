@@ -2,10 +2,10 @@
   %p
     Forgot your password?
 
-.dialog.reset
+.dialog.dialog-info.reset
   .container
     = form_tag passwords_path, class: "control-group" do
       = text_field_tag :email, nil, placeholder: "Enter your email", class: "flat"
-      %button.btn.btn-primary.btn-wide.mll
+      %button.btn.btn-default.btn-wide.mll
         %i.fui-mail
         Send me reset instruction

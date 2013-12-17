@@ -12,7 +12,20 @@ describe PasswordsController do
         expect(flash[:error]).to eq("Email cannot be blank.")
       end
     end
-    context "with existing email"
+
+    context "with existing email" do
+      it "redirects to the password confirmation page" do
+        Fabricate(:regular_user, email: "alice@example.com")
+        post :create, email: "alice@example.com"
+        expect(response).to redirect_to password_confirmation_path
+      end
+      it "sends out an email to email address" do
+        Fabricate(:regular_user, email: "alice@example.com")
+        post :create, email: "alice@example.com"
+        expect(ActionMailer::Base.deliveries.last.to).to eq(["alice@example.com"])
+      end
+    end
+
     context "with non-existing email"
   end
 end
