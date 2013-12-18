@@ -9,6 +9,15 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-
+    user = RegularUser.where(token: params[:token]).first
+    if user
+      user.password = params[:password]
+      user.generate_token
+      user.save
+      flash[:success] = "Your password has been changed. Please sign in."
+      redirect_to sign_in_path
+    else
+      redirect_to expired_token_path
+    end
   end
 end
