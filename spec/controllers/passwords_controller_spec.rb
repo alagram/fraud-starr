@@ -13,16 +13,34 @@ describe PasswordsController do
       end
     end
 
-    context "with existing email" do
+    context "with existing email and token" do
+
+      after { ActionMailer::Base.deliveries.clear }
+
+      it "sends out an email to email address" do
+        Fabricate(:regular_user, email: "bob@example.com")
+        post :create, email: "bob@example.com"
+        expect(ActionMailer::Base.deliveries.last.to).to eq(["bob@example.com"])
+      end
       it "redirects to the password confirmation page" do
         Fabricate(:regular_user, email: "alice@example.com")
         post :create, email: "alice@example.com"
         expect(response).to redirect_to password_confirmation_path
       end
-      it "sends out an email to email address" do
-        Fabricate(:regular_user, email: "alice@example.com")
+      it "renders the new password page if token does not exist" do
+        alice = Fabricate(:user, email: "alice@example.com")
         post :create, email: "alice@example.com"
-        expect(ActionMailer::Base.deliveries.last.to).to eq(["alice@example.com"])
+        expect(response).to render_template :new
+      end
+      it "does not send an email if token does not exist" do
+        alice = Fabricate(:user, email: "alice@example.com")
+        post :create, email: "alice@example.com"
+        expect(ActionMailer::Base.deliveries.last).to be_nil
+      end
+      it "shows error message if token does not exist" do
+        alice = Fabricate(:user, email: "alice@example.com")
+        post :create, email: "alice@example.com"
+        expect(flash[:error]).to eq("There is no user with that email in the system.")
       end
     end
 
