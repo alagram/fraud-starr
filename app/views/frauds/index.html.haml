@@ -4,10 +4,10 @@
 
   .contain
     = form_tag search_frauds_path, method: :get, class: "form-search" do
-      .input-prepend
+      .input-append
+        %input#search-query-2.span8.huge.search-query.search-query-rounded(name="q" type="text" autocomplete="off")
         %button.btn.btn-huge(type="submit")
           %span.fui-search
-        %input#search-query-2.span8.huge.search-query.search-query-rounded(name="q" type="text" autocomplete="off")
     %br
   .caption
     %h2 What does FraudStar do?
