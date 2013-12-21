@@ -17,9 +17,8 @@
       %ul.search-results
         - @results.each do |fraud|
           %li
-          %h3
-            = link_to fraud.title, fraud_path(fraud)
-            %br
-          .desc= fraud.description
+            %h3
+              = link_to fraud.title, fraud_path(fraud)
+              %br
+            .desc= fraud.description
 
-      

@@ -1,7 +1,7 @@
 class FraudsController < ApplicationController
-  before_filter :require_user, only: [:new, :create, :show, :register]
+  before_filter :require_user, only: [:new, :create, :register]
 
-  def index  
+  def index
   end
 
   def new
@@ -10,7 +10,7 @@ class FraudsController < ApplicationController
 
   def create
     @fraud = Fraud.new(fraud_params)
-    
+
     if @fraud.save
       flash[:success] = 'Fraudulent event successfully added.'
       redirect_to report_fraud_path

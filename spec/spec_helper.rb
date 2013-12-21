@@ -5,6 +5,40 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
 
+OmniAuth.config.test_mode = true
+
+omniauth_twitter_hash = {
+  provider: "twitter",
+  uid: "123456",
+  info: {
+    nickname: "kofialbert",
+    name: "Albert Smith"
+   },
+   credentials: {
+    token: "a1b2c3d4",
+    secret: "abcd1234"
+   },
+}
+
+omniauth_facebook_hash = {
+  provider: "facebook",
+  uid: "123456",
+  info: {
+    nickname: "kofialbert",
+    email: "albert@example.com",
+    first_name: "Albert",
+    last_name: "Smith"
+   },
+   credentials: {
+    token: "a1b2c3d4",
+    expires_at: 1392246275,
+    expires: true
+   },
+}
+
+OmniAuth.config.add_mock(:twitter, omniauth_twitter_hash)
+OmniAuth.config.add_mock(:facebook, omniauth_facebook_hash)
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }

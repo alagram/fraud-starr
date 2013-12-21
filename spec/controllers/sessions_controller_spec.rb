@@ -16,37 +16,39 @@ describe SessionsController do
 
   describe "POST create" do
 
-    let!(:david) { Fabricate(:user) }
+    context "with regular user" do
+      let!(:david) { Fabricate(:regular_user) }
 
-    context "with valid credentials" do
+      context "with valid credentials" do
 
-      before do
-        post :create, email: david.email, password: david.password
+        before do
+          post :create, email: david.email, password: david.password
+        end
+
+        it "puts the signed in user in the session" do
+          expect(session[:user_id]).to eq(david.id)
+        end
+
+        it "redirects to root path" do
+          expect(response).to redirect_to root_path
+        end
       end
 
-      it "puts the signed in user in the session" do
-        expect(session[:user_id]).to eq(david.id)
-      end
+      context "with invalid credentials" do
 
-      it "redirects to root path" do
-        expect(response).to redirect_to root_path
-      end
-    end
+        before do
+          post :create, email: david.email, password: david.password + 'asdfght'
+        end
 
-    context "with invalid credentials" do
-
-      before do
-        post :create, email: david.email, password: david.password + 'asdfght'
-      end
-
-      it "does not put the siged in user in the session" do
-        expect(session[:user_id]).to be_nil
-      end
-      it "redirects to the sign in page" do
-        expect(response).to redirect_to sign_in_path
-      end
-      it "sets the flash error message" do
-        expect(flash[:error]).not_to be_blank
+        it "does not put the siged in user in the session" do
+          expect(session[:user_id]).to be_nil
+        end
+        it "redirects to the sign in page" do
+          expect(response).to redirect_to sign_in_path
+        end
+        it "sets the flash error message" do
+          expect(flash[:error]).not_to be_blank
+        end
       end
     end
   end

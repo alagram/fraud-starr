@@ -53,14 +53,15 @@ class OAuthUser
 
   def create_new_user
     @user = User.create!(
-      :first_name   => @policy.first_name,
-      :last_name    => @policy.last_name,
-      :email        => @policy.email
+      :first_name       => @policy.first_name,
+      :last_name        => @policy.last_name,
+      :email            => @policy.email,
+      :password_digest  => BCrypt::Password.create(SecureRandom.urlsafe_base64).to_s
       )
   end
 
   def refresh_tokens
-    @account.update_attributes(
+    @account.update(
       :oauth_token    => @policy.oauth_token,
       :oauth_expires  => @policy.oauth_expires,
       :oauth_secret   => @policy.oauth_secret

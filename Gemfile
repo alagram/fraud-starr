@@ -13,6 +13,7 @@ gem 'carrierwave'
 gem 'jquery-fileupload-rails'
 gem 'taps'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -38,6 +39,7 @@ end
 group :development do
   gem 'foreman'
   gem 'pg'
+  gem 'letter_opener'
 end
 
 group :production do

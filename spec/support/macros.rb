@@ -1,10 +1,10 @@
 def set_current_user
-  alice = Fabricate(:user)
+  alice = Fabricate(:regular_user)
   session[:user_id] = alice.id
 end
 
 def current_user
-  User.find(session[:user_id])
+  RegularUser.find(session[:user_id])
 end
 
 def clear_current_user
@@ -12,7 +12,7 @@ def clear_current_user
 end
 
 def sign_in(a_user=nil)
-  user = a_user || Fabricate(:user)
+  user = a_user || Fabricate(:regular_user)
   visit sign_in_path
   fill_in "Email", with: user.email
   fill_in "Password", with: user.password
