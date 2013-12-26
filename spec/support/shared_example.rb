@@ -1,4 +1,4 @@
-shared_examples "requires user" do
+shared_examples "requires sign in" do
   it "redirects to the sign in path" do
     clear_current_user
     action
