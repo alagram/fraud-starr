@@ -1,0 +1,29 @@
+= render 'shared/errors', object: @fraud
+
+= form_for @fraud, html: { class: "form-horizontal", autocomplete: "off", multipart: true } do |f|
+  %fieldset
+    = f.hidden_field :fraud_type_id
+    = f.fields_for :properties, OpenStruct.new(@fraud.properties) do |builder|
+      - @fraud.fraud_type.fields.each do |field|
+        = render "frauds/fields/#{field.field_type}", field: field, f: builder
+        %br
+    .control-group
+      = f.label :title, class: 'control-label'
+      .controls
+        = f.text_field :title, class: 'span3'
+    .control-group
+      = f.label :description, class: 'control-label'
+      .controls
+        = f.text_area :description, rows: 6, class: 'span6'
+    .control-group
+      = f.label :fraud_date, class: 'control-label'
+      .controls
+        = f.text_field :fraud_date, class: 'span3 fraud_date'
+    .control-group
+      = f.fields_for :images, Image.new do |ff|
+        = ff.label :image, "Upload Evidence", class: 'control-label'
+        .controls
+          = ff.file_field :image, multiple: true, class: 'btn btn-file', id: 'upload-image', name: "fraud[images_attributes][][image]"
+  %fieldset.actions.control-group
+    .controls
+      = f.submit class: 'btn', id: 'submit-data'
