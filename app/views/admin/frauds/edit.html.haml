@@ -1,6 +1,6 @@
-= render 'shared/errors', object: @fraud
+/ = render 'shared/errors', object: @fraud
 
-= form_for @fraud, html: { class: "form-horizontal", autocomplete: "off", multipart: true } do |f|
+= form_for [:admin, @fraud], html: { class: "form-horizontal", autocomplete: "off", multipart: true } do |f|
   %fieldset
     = f.hidden_field :fraud_type_id
     = f.fields_for :properties, OpenStruct.new(@fraud.properties) do |builder|
