@@ -22,10 +22,12 @@
     .control-group
       = f.label :status, class: 'control-label'
       .controls
-        = f.select :status, options_for_select((1..4).map {|num| [num, "Status"]})
-    .span4.offset2
-      - @fraud.images.each do |image|
-        %img.img-rounded(src= "#{image.image}")
+        = f.select :status, options_for_status
+      %br
+      .controls
+        - @fraud.images.each do |image|
+          %img.img-rounded(src= "#{image.image}")
+          %hr
   %fieldset.actions.control-group
     .controls
       = f.submit "Approve", class: 'btn'
