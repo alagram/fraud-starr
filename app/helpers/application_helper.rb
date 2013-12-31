@@ -11,4 +11,8 @@ module ApplicationHelper
   def fraud_type_options
     options_from_collection_for_select(FraudType.all, :id, :name)
   end
+
+  def options_for_status(selected=nil)
+    options_for_select([["Pending", "1"], ["Go Live", "2"], ["Verified", "3"]], selected)
+  end
 end
