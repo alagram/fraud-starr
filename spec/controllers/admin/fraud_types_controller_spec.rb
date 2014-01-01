@@ -6,7 +6,7 @@ describe Admin::FraudTypesController do
       let(:action) { get :new }
     end
     it "sets @fraud_type to a new FraudType" do
-      set_current_user
+      set_current_admin
       get :new
       expect(assigns(:fraud_type)).to be_instance_of FraudType
       expect(assigns(:fraud_type)).to be_new_record
