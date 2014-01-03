@@ -7,6 +7,7 @@ describe RegularUser do
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:password) }
   it { should validate_uniqueness_of(:email).case_insensitive }
+  it { should have_many(:frauds) }
 
   it "generates a random token when the user is created" do
     bob = Fabricate(:regular_user)
