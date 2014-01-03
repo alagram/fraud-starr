@@ -2,6 +2,7 @@ class Fraud < ActiveRecord::Base
   belongs_to :fraud_type
   has_many :images
   accepts_nested_attributes_for :images, :reject_if => proc { |attr| attr['image'].blank? }
+  belongs_to :user
 
   before_validation :append_at_sign_to_twitter_handle
   validates_presence_of :title, :fraud_date, :description
