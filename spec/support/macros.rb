@@ -4,7 +4,7 @@ def set_current_user
 end
 
 def current_user
-  RegularUser.find(session[:user_id])
+  User.find(session[:user_id])
 end
 
 def clear_current_user
