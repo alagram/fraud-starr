@@ -55,6 +55,7 @@ group :test do
   gem 'fabrication'
   gem 'faker'
   gem 'capybara'
+  gem 'capybara-email'
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'database_cleaner', '~> 1.0.1'
