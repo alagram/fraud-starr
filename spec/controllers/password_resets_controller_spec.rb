@@ -24,6 +24,11 @@ describe PasswordResetsController do
 
   describe "POST create" do
     context "with valid token" do
+
+      before do
+        request.env["HTTP_REFERER"] = "where_i_came_from"
+      end
+
       it "redirects to the sign in page" do
         alice = Fabricate(:regular_user, password: 'old_password')
         alice.update_column(:token, '12345')
@@ -47,6 +52,12 @@ describe PasswordResetsController do
         alice.update_column(:token, '12345')
         post :create, token: '12345', password: 'new_password'
         expect(alice.reload.token).not_to eq('12345')
+      end
+      it "redirects to back if password is blank" do
+        alice = Fabricate(:regular_user, password: 'old_password')
+        alice.update_column(:token, '12345')
+        post :create, token: '12345', password: nil
+        expect(response).to redirect_to "where_i_came_from"
       end
     end
 
