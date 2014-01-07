@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  before_filter :require_user, only: [:edit, :update]
-
   def new
     @user = RegularUser.new
     redirect_to root_path if current_user
@@ -17,9 +15,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = current_user
-  end
+  # def show
+  #   @user = current_user
+  # end
 
   private
 
