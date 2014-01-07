@@ -1,6 +1,6 @@
 class Admin::FraudTypesController < ApplicationController
-  before_filter :require_user
-  before_filter :require_admin
+  before_action :require_user
+  before_action :require_admin
   before_action :set_fraud_type, only: [:show, :edit, :update]
 
   def index
