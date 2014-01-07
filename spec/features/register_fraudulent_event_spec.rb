@@ -3,10 +3,8 @@ require 'spec_helper'
 feature 'User registers fraudulent event' do
 
   scenario 'with valid fraud info', js: true do
-   twitter = Fabricate(:fraud_type, name: "Twitter")
-   facebook = Fabricate(:fraud_type, name: "Facebook")
-   Fabricate(:fraud_field, fraud_type_id: twitter.id)
-   alice = Fabricate(:regular_user)
+    twitter = Fabricate(:fraud_type, name: "Twitter")
+    alice = Fabricate(:regular_user)
 
 
     visit root_path
@@ -19,15 +17,14 @@ feature 'User registers fraudulent event' do
     fill_in "Title", with: "My fraud"
     fill_in "Description", with: "A very unfortunate event."
     fill_in "Fraud date", with: "2013-11-08"
-    attach_file "upload-image", ["#{Rails.root}/spec/support/uploads/looper.jpg", "#{Rails.root}/spec/support/uploads/marigold.jpg", "#{Rails.root}/spec/support/uploads/argo.jpg"]
+    attach_file "upload-image", "#{Rails.root}/spec/support/uploads/looper.jpg"
     click_button "Create Fraud"
     expect(page).to have_content("Fraudulent event successfully added.")
   end
 
   scenario 'with invalid fraud info', js: true do
-    twitter = Fabricate(:fraud_type, name: "Twitter")
     facebook = Fabricate(:fraud_type, name: "Facebook")
-    Fabricate(:fraud_field, name: "Facebook Address", fraud_type_id: facebook.id)
+    Fabricate(:fraud_field, name: "Facebook Address", fraud_type: facebook)
     kofi = Fabricate(:regular_user)
 
     visit root_path
