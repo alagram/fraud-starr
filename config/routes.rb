@@ -22,7 +22,7 @@ FraudStarr::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users, only: [:create, :show]
   resources :sessions, only: [:create]
   resources :passwords, only: [:new, :create]
   resources :password_resets, only: [:show, :create]
