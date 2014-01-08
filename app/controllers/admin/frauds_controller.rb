@@ -1,7 +1,11 @@
 class Admin::FraudsController < ApplicationController
   before_action :require_user
   before_action :require_admin
-  before_action :set_fraud
+  before_action :set_fraud, except: [:index]
+
+  def index
+    @frauds = Fraud.where.not(status: "3")
+  end
 
   def edit
   end
