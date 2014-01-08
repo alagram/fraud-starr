@@ -1,6 +1,24 @@
 require 'spec_helper'
 
 describe Admin::FraudsController do
+
+  describe "GET index" do
+
+    it_behaves_like "requires sign in" do
+      fraud = Fabricate(:fraud)
+      let(:action) { get :index }
+    end
+
+    it "sets @frauds" do
+      set_current_admin
+      fraud_1 = Fabricate(:fraud)
+      fraud_2 = Fabricate(:fraud)
+      get :index
+      expect(assigns(:frauds)).to match_array([fraud_1, fraud_2])
+    end
+
+  end
+
   describe "GET edit" do
 
     it_behaves_like "requires sign in" do
