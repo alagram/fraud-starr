@@ -13,7 +13,7 @@ FraudStarr::Application.routes.draw do
 
   namespace :admin do
     resources :fraud_types
-    resources :frauds, only: [:edit, :update]
+    resources :frauds, only: [:index, :edit, :update]
   end
 
   resources :frauds, only: [:new, :create, :show] do
