@@ -31,7 +31,26 @@ class Fraud < ActiveRecord::Base
     end
   end
 
+  def display_text
+    description.split.size > 4 ? short_desc : description
+  end
+
+  def show_status
+    if status == "1"
+      "Pending"
+    elsif status == "2"
+      "Go Live"
+    elsif status == "3"
+      "Verified"
+    end
+  end
+
+
   private
+
+  def short_desc
+    description.split.first(4).join(" ").concat(", more...")
+  end
 
   def append_at_sign_to_twitter_handle
     if properties["Twitter Handle"].present? && properties["Twitter Handle"].start_with?("@")

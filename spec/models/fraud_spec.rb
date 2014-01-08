@@ -26,4 +26,38 @@ describe Fraud do
       expect(Fraud.search("")).to eq([])
     end
   end
+
+  describe "#display_text" do
+    it "displays text when there is one word" do
+      fraud = Fabricate(:fraud, description: "Enjoy!")
+      expect(fraud.display_text).to eq("Enjoy!")
+    end
+
+    it "displays text when there is more than one word" do
+      fraud = Fabricate(:fraud, description: "This will pass")
+      expect(fraud.display_text).to eq("This will pass")
+    end
+
+    it "displays up to four words" do
+      fraud = Fabricate(:fraud, description: "Ruby on Rails really rocks!")
+      expect(fraud.display_text).to eq("Ruby on Rails really, more...")
+    end
+  end
+
+  describe "#show_status" do
+    it "displays Pending when status is 1" do
+      fraud = Fabricate(:fraud, status: "1")
+      expect(fraud.show_status).to eq("Pending")
+    end
+
+    it "displays Go Live when status is 2" do
+      fraud = Fabricate(:fraud, status: "2")
+      expect(fraud.show_status).to eq("Go Live")
+    end
+
+    it "displays Verified when status is 3" do
+      fraud = Fabricate(:fraud, status: "3")
+      expect(fraud.show_status).to eq("Verified")
+    end
+  end
 end
