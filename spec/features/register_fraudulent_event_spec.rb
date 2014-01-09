@@ -17,7 +17,7 @@ feature 'User registers fraudulent event' do
     fill_in "Title", with: "My fraud"
     fill_in "Description", with: "A very unfortunate event."
     fill_in "Fraud date", with: "2013-11-08"
-    attach_file "upload-image", "#{Rails.root}/spec/support/uploads/looper.jpg"
+    attach_file "upload-image", ["#{Rails.root}/spec/support/uploads/looper.jpg", "#{Rails.root}/spec/support/uploads/marigold.jpg", "#{Rails.root}/spec/support/uploads/argo.jpg"]
     click_button "Create Fraud"
     expect(page).to have_content("Fraudulent event successfully added.")
   end
