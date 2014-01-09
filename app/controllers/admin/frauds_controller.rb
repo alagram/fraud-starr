@@ -4,7 +4,7 @@ class Admin::FraudsController < ApplicationController
   before_action :set_fraud, except: [:index]
 
   def index
-    @frauds = Fraud.where.not(status: "3")
+    @frauds = Fraud.where.not(status: ["3"])
   end
 
   def edit
@@ -22,7 +22,7 @@ class Admin::FraudsController < ApplicationController
   private
 
   def set_fraud
-    @fraud = Fraud.includes(:images).find(params[:id])
+    @fraud = Fraud.includes(:images).find_by(token: params[:id])
   end
 
   def fraud_params
