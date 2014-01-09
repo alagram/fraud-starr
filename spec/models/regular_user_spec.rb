@@ -9,8 +9,7 @@ describe RegularUser do
   it { should validate_uniqueness_of(:email).case_insensitive }
   it { should have_many(:frauds) }
 
-  it "generates a random token when the user is created" do
-    bob = Fabricate(:regular_user)
-    expect(bob.token).to be_present
+  it_behaves_like "tokenable" do
+    let(:object) { Fabricate(:regular_user) }
   end
 end
