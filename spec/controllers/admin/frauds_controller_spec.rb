@@ -23,27 +23,27 @@ describe Admin::FraudsController do
 
     it_behaves_like "requires sign in" do
       fraud = Fabricate(:fraud)
-      let(:action) { get :edit, id: fraud.id }
+      let(:action) { get :edit, id: fraud.token }
     end
 
     it "sets @fraud" do
       set_current_admin
       fraud = Fabricate(:fraud)
-      get :edit, id: fraud.id
+      get :edit, id: fraud.token
       expect(assigns(:fraud)).to eq(fraud)
     end
 
     it "redirects the regular user to the root path" do
       fraud = Fabricate(:fraud)
       set_current_user
-      get :edit, id: fraud.id
+      get :edit, id: fraud.token
       expect(response).to redirect_to root_path
     end
 
     it "sets the flash error message for regular user" do
       fraud = Fabricate(:fraud)
       set_current_user
-      get :edit, id: fraud.id
+      get :edit, id: fraud.token
       expect(flash[:error]).to be_present
     end
   end
@@ -55,28 +55,28 @@ describe Admin::FraudsController do
       it "redirects the regular user to the root path" do
         fraud = Fabricate(:fraud)
         set_current_user
-        patch :update, id: fraud.id, fraud: Fabricate.attributes_for(:fraud)
+        patch :update, id: fraud.token, fraud: Fabricate.attributes_for(:fraud)
         expect(response).to redirect_to root_path
       end
 
       it "sets @fraud" do
         set_current_admin
         fraud = Fabricate(:fraud)
-        patch :update, id: fraud.id, fraud: Fabricate.attributes_for(:fraud)
+        patch :update, id: fraud.token, fraud: Fabricate.attributes_for(:fraud)
         expect(assigns(:fraud)).to eq(fraud)
       end
 
       it "changes attributes of fraudulent event" do
         set_current_admin
         fraud = Fabricate(:fraud)
-        patch :update, id: fraud.id, fraud: Fabricate.attributes_for(:fraud, status: "3")
+        patch :update, id: fraud.token, fraud: Fabricate.attributes_for(:fraud, status: "3")
         expect(fraud.reload.status).to eq("3")
       end
 
       it "should redirect_to edit admin fraud path" do
         set_current_admin
         fraud = Fabricate(:fraud)
-        patch :update, id: fraud.id, fraud: Fabricate.attributes_for(:fraud, status: "3")
+        patch :update, id: fraud.token, fraud: Fabricate.attributes_for(:fraud, status: "3")
         expect(response).to redirect_to edit_admin_fraud_path
       end
     end
@@ -85,21 +85,21 @@ describe Admin::FraudsController do
       it "does not change fraud attibutes" do
         set_current_admin
         fraud = Fabricate(:fraud)
-        patch :update, id: fraud.id, fraud: Fabricate.attributes_for(:fraud, title: nil, status: "3")
+        patch :update, id: fraud.token, fraud: Fabricate.attributes_for(:fraud, title: nil, status: "3")
         expect(fraud.reload.status).to_not eq("3")
       end
 
       it "renders edit page" do
         set_current_admin
         fraud = Fabricate(:fraud)
-        patch :update, id: fraud.id, fraud: Fabricate.attributes_for(:fraud, title: nil, status: "3")
+        patch :update, id: fraud.token, fraud: Fabricate.attributes_for(:fraud, title: nil, status: "3")
         expect(response).to render_template :edit
       end
     end
 
     it_behaves_like "requires sign in" do
       fraud = Fabricate(:fraud)
-      let(:action) { patch :update, id: fraud.id, fraud: Fabricate.attributes_for(:fraud) }
+      let(:action) { patch :update, id: fraud.token, fraud: Fabricate.attributes_for(:fraud) }
     end
   end
 end
