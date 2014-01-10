@@ -6,6 +6,10 @@ describe Fraud do
   it { should accept_nested_attributes_for(:images) }
   it { should belong_to(:user) }
 
+  it_behaves_like "tokenable" do
+    let(:object) { Fabricate(:fraud) }
+  end
+
   describe "search" do
     it "returns an empty array if there is no match" do
       f1 = Fabricate(:fraud)
