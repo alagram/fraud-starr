@@ -1,2 +1,16 @@
-%p.lead= @fraud.title
-%hr
+.container
+  %p.lead= @fraud.title
+  %hr
+  %br
+  %ul.thumbnails
+    - @fraud.images.each do |image|
+      %li.span2
+        %img.img-rounded(src= "#{image.image}")
+
+  %hr
+  .row
+    .well.well-large
+      %p= @fraud.description
+      %br
+      = link_to  "Posted by #{@fraud.user.full_name}", "#", class: "pull-right"
+
