@@ -13,6 +13,7 @@ FraudStarr::Application.routes.draw do
 
   namespace :admin do
     resources :fraud_types
+    resources :frauds, only: [:index, :edit, :update]
   end
 
   resources :frauds, only: [:new, :create, :show] do
@@ -21,7 +22,7 @@ FraudStarr::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users, only: [:create, :show]
   resources :sessions, only: [:create]
   resources :passwords, only: [:new, :create]
   resources :password_resets, only: [:show, :create]

@@ -1,7 +1,9 @@
 class Fraud < ActiveRecord::Base
+  include Tokenable
   belongs_to :fraud_type
   has_many :images
   accepts_nested_attributes_for :images, :reject_if => proc { |attr| attr['image'].blank? }
+  belongs_to :user
 
   before_validation :append_at_sign_to_twitter_handle
   validates_presence_of :title, :fraud_date, :description
@@ -30,7 +32,30 @@ class Fraud < ActiveRecord::Base
     end
   end
 
+  def display_text
+    description.split.size > 4 ? short_desc : description
+  end
+
+  def show_status
+    if status == "1"
+      "Pending"
+    elsif status == "2"
+      "Go Live"
+    elsif status == "3"
+      "Verified"
+    end
+  end
+
+  def to_param
+    token
+  end
+
+
   private
+
+  def short_desc
+    description.split.first(4).join(" ").concat(", more...")
+  end
 
   def append_at_sign_to_twitter_handle
     if properties["Twitter Handle"].present? && properties["Twitter Handle"].start_with?("@")

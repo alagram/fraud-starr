@@ -1,0 +1,17 @@
+.container
+  %table.table.table-striped.table-hover
+    %thead
+      %tr
+        %th #
+        %th Title
+        %th Description
+        %th Status
+        %th Edit
+    %tbody
+      - @frauds.each do |fraud|
+        %tr
+          %td= fraud.id
+          %td= fraud.title
+          %td= fraud.display_text
+          %td= fraud.show_status
+          %td= link_to "Edit", edit_admin_fraud_path(fraud)

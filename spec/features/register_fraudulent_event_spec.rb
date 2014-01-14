@@ -3,10 +3,8 @@ require 'spec_helper'
 feature 'User registers fraudulent event' do
 
   scenario 'with valid fraud info', js: true do
-   twitter = Fabricate(:fraud_type, name: "Twitter")
-   facebook = Fabricate(:fraud_type, name: "Facebook")
-   Fabricate(:fraud_field, fraud_type_id: twitter.id)
-   alice = Fabricate(:regular_user)
+    twitter = Fabricate(:fraud_type, name: "Twitter")
+    alice = Fabricate(:regular_user)
 
 
     visit root_path
@@ -25,9 +23,8 @@ feature 'User registers fraudulent event' do
   end
 
   scenario 'with invalid fraud info', js: true do
-    twitter = Fabricate(:fraud_type, name: "Twitter")
     facebook = Fabricate(:fraud_type, name: "Facebook")
-    Fabricate(:fraud_field, name: "Facebook Address", fraud_type_id: facebook.id)
+    Fabricate(:fraud_field, name: "Facebook Address", fraud_type: facebook)
     kofi = Fabricate(:regular_user)
 
     visit root_path

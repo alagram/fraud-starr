@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217154254) do
+ActiveRecord::Schema.define(version: 20140109141431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20131217154254) do
     t.integer  "fraud_type_id"
     t.hstore   "properties"
     t.string   "status",        default: "1"
+    t.integer  "user_id"
+    t.string   "token"
   end
 
   add_index "frauds", ["properties"], name: "frauds_properties_idx", using: :gin
@@ -72,6 +74,7 @@ ActiveRecord::Schema.define(version: 20131217154254) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "token"
+    t.boolean  "admin"
   end
 
 end

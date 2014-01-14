@@ -1,4 +1,7 @@
 class Admin::FraudTypesController < ApplicationController
+  before_action :require_user
+  before_action :require_admin
+  before_action :set_fraud_type, only: [:show, :edit, :update]
 
   def index
   end
@@ -20,17 +23,13 @@ class Admin::FraudTypesController < ApplicationController
   end
 
   def show
-    @fraud_type = FraudType.find(params[:id])
   end
 
   def edit
-    @fraud_type = FraudType.find(params[:id])
   end
 
   def update
-    @fraud_type = FraudType.find(params[:id])
-
-    if @fraud_type.update_attributes(fraud_type_params)
+    if @fraud_type.update(fraud_type_params)
       flash[:success] = 'Fraud type was succesfully updated.'
       redirect_to admin_fraud_type_path
     else
@@ -44,5 +43,9 @@ class Admin::FraudTypesController < ApplicationController
 
   def fraud_type_params
     params.require(:fraud_type).permit!
+  end
+
+  def set_fraud_type
+    @fraud_type = FraudType.find(params[:id])
   end
 end

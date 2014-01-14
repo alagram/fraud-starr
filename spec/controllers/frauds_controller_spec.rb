@@ -16,6 +16,7 @@ describe FraudsController do
     context "with valid inputs" do
 
       before { set_current_user }
+      let(:bob) { current_user }
 
       it "redirects to report fraud page" do
         post :create, fraud: Fabricate.attributes_for(:fraud)
@@ -28,6 +29,10 @@ describe FraudsController do
       it "creates a fraudulent event associated with uploaded evidence" do
         post :create, fraud: Fabricate.attributes_for(:fraud)
         expect(Fraud.first.images).to eq([Image.first])
+      end
+      it "creates a fraudulent event associated with signed in user" do
+        post :create, fraud: Fabricate.attributes_for(:fraud)
+        expect(Fraud.first.user).to eq(bob)
       end
       it "creates a fraudulent event associated with multiple uploaded evidence" do
         image_params = Fabricate.attributes_for(:image)

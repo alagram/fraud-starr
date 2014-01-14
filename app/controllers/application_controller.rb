@@ -9,4 +9,11 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
+
+  def require_admin
+    unless current_user.admin?
+      flash[:error] = "You are not authorised to do that."
+      redirect_to root_path
+    end
+  end
 end

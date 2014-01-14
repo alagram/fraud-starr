@@ -5,4 +5,5 @@ Fabricator(:fraud) do
   properties { Hash['Twitter Handle', '@agram'] }
   images_attributes { [Fabricate.attributes_for(:image)] }
   fraud_type
+  user
 end

@@ -4,11 +4,15 @@ def set_current_user
 end
 
 def current_user
-  RegularUser.find(session[:user_id])
+  User.find(session[:user_id])
 end
 
 def clear_current_user
   session[:user_id] = nil
+end
+
+def set_current_admin(admin=nil)
+  session[:user_id] = (admin || Fabricate(:admin)).id
 end
 
 def sign_in(a_user=nil)

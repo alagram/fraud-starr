@@ -1,5 +1,5 @@
 class FraudsController < ApplicationController
-  before_filter :require_user, only: [:new, :create, :register]
+  before_action :require_user, only: [:new, :create, :register]
 
   def index
   end
@@ -9,7 +9,7 @@ class FraudsController < ApplicationController
   end
 
   def create
-    @fraud = Fraud.new(fraud_params)
+    @fraud = Fraud.new(fraud_params.merge!(user: current_user))
 
     if @fraud.save
       flash[:success] = 'Fraudulent event successfully added.'
