@@ -11,6 +11,14 @@ describe FraudsController do
     end
   end
 
+  describe "GET show" do
+    it "sets @fraud instance variable" do
+      fraud = Fabricate(:fraud)
+      get :show, id: fraud.token
+      expect(assigns(:fraud)).to eq(fraud)
+    end
+  end
+
   describe "POST create" do
 
     context "with valid inputs" do
@@ -60,5 +68,8 @@ describe FraudsController do
         expect(response).to render_template :new
       end
     end
+  end
+
+  describe "GET search" do
   end
 end
