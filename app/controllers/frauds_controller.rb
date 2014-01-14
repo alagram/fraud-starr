@@ -24,6 +24,7 @@ class FraudsController < ApplicationController
   end
 
   def show
+    @fraud = Fraud.find_by(token: params[:id])
   end
 
 
