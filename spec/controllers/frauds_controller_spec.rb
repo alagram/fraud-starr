@@ -71,5 +71,11 @@ describe FraudsController do
   end
 
   describe "GET search" do
+    it "sets @results instance variable" do
+      fraud1 = Fabricate(:fraud)
+      fraud2 = Fabricate(:fraud, title: "Another one")
+      get :search, q: "@agram"
+      expect(assigns(:results)).to match_array([fraud1, fraud2])
+    end
   end
 end
